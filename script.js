@@ -29,6 +29,10 @@ inputCitiesFrom.addEventListener('input', () => {
   showCity(inputCitiesFrom, dropdownCitiesFrom);
 });
 
+inputCitiesTo.addEventListener('input', () => {
+  showCity(inputCitiesTo, dropdownCitiesTo);
+});
+
 dropdownCitiesFrom.addEventListener('click', (e) => {
   const target = e.target;
   if (target.tagName.toLowerCase() === 'li') {
@@ -36,3 +40,11 @@ dropdownCitiesFrom.addEventListener('click', (e) => {
     dropdownCitiesFrom.textContent = '';
   }
 });
+
+dropdownCitiesTo.addEventListener('click', e => {
+  const target = e.target;
+  if (target.tagName.toLowerCase() === 'li') {
+    inputCitiesTo.value = target.textContent;
+    dropdownCitiesTo.textContent = '';
+  }
+})
