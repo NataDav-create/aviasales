@@ -35,7 +35,7 @@ const showCity = (input, list) => {
   if (input.value !== '') {
     const filterCity = city.filter((item) => {
       const fixedItem = item.name.toLowerCase();
-      return fixedItem.includes(input.value.toLowerCase())
+      return fixedItem.startsWith(input.value.toLowerCase())
     });
     filterCity.forEach((item) => {
       const li = document.createElement('li');
@@ -59,6 +59,7 @@ const renderCheapDay = (cheapTicket) => {
 }
 
 const renderCheapYear = (cheapTickets) => {
+  cheapTickets.sort((a, b) => a.value - b.value);
   console.log(cheapTickets)
 };
 
@@ -109,7 +110,9 @@ formSearch.addEventListener('submit', (e) => {
 });
 
 getData(citiesApi, (data) => {
-  city = JSON.parse(data).filter(item => item.name)
+  city = JSON.parse(data).filter(item => item.name);
+  city.sort((a, b) => a.name > b.name);
+  console.log(city)
 });
 
 // getData(calendar + '?depart_date=2021-06-29&origin=SVX&destination=KGD&one_way=true&token=' + API_KEY, (data) => {
